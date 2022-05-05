@@ -54,7 +54,7 @@ func (app *App) NextStep(parsedCommands []string) stateFn {
 	case UNSET:
 		return app.UnSet(parsedCommands)
 	case NumEqualTo:
-		return app.NumEqualTo
+		return app.NumEqualTo(parsedCommands)
 	case END:
 		return app.End
 	case ALL:

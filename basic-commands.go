@@ -27,8 +27,18 @@ func (app *App) UnSet(commands []string) stateFn {
 	return app.Prompt
 }
 
-func (app *App) NumEqualTo() stateFn {
-
+func (app *App) NumEqualTo(parsedCommands []string) stateFn {
+	if len(parsedCommands) != 2 {
+		return app.InvalidCommand("incorrect number of variables")
+	}
+	val := parsedCommands[1]
+	count := 0
+	for _, value := range app.Store {
+		if val == value {
+			count += 1
+		}
+	}
+	fmt.Println(count)
 	return app.InvalidCommand("not yet implemented")
 }
 
