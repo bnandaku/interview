@@ -100,6 +100,7 @@ func (app *App) Help() stateFn {
 	fmt.Println("UNSET <name> -- Unsets a record with key <name>")
 	fmt.Println("NUMEQUALTO <value> -- Prints number of records stored")
 	fmt.Println("ALL -- Prints All Records")
+	fmt.Println("HELP -- prints this message")
 	fmt.Println("----Transaction Commands----")
 	fmt.Println("Begin -- Begins a transaction session")
 	fmt.Println("Rollback -- Rolls back the db before the transaction session")

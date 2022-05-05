@@ -9,7 +9,7 @@ func (app *App) Begin() stateFn {
 }
 
 func (app *App) Rollback() stateFn {
-	if !app.checkIfTransactionsExist() {
+	if app.checkIfTransactionsExist() {
 		app.Store = app.TransactionState
 	}
 	app.resetTransactions()
@@ -17,7 +17,7 @@ func (app *App) Rollback() stateFn {
 }
 
 func (app *App) Commit() stateFn {
-	if !app.checkIfTransactionsExist() {
+	if app.checkIfTransactionsExist() {
 		app.TransactionState = nil
 	}
 	app.resetTransactions()
