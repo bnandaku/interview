@@ -2,15 +2,16 @@ package main
 
 import "fmt"
 
-func (app *App) Set(parsedCommands []string) stateFn {
-	if len(parsedCommands) != 3 {
+//Set value based on provided commands
+func (app *App) Set(commands []string) stateFn {
+	if len(commands) != 3 {
 		return app.InvalidCommand("invalid set request")
 	}
 	if app.TransactionActive {
 		app.TransactionCount += 1
 	}
-	key := parsedCommands[1]
-	value := parsedCommands[2]
+	key := commands[1]
+	value := commands[2]
 	app.Store[key] = value
 	return app.Prompt
 }
@@ -27,11 +28,11 @@ func (app *App) UnSet(commands []string) stateFn {
 	return app.Prompt
 }
 
-func (app *App) NumEqualTo(parsedCommands []string) stateFn {
-	if len(parsedCommands) != 2 {
+func (app *App) NumEqualTo(commands []string) stateFn {
+	if len(commands) != 2 {
 		return app.InvalidCommand("incorrect number of variables")
 	}
-	val := parsedCommands[1]
+	val := commands[1]
 	count := 0
 	for _, value := range app.Store {
 		if val == value {
@@ -49,11 +50,11 @@ func (app *App) All() stateFn {
 	return app.Prompt
 }
 
-func (app *App) Get(parsedCommands []string) stateFn {
-	if len(parsedCommands) != 2 {
+func (app *App) Get(commands []string) stateFn {
+	if len(commands) != 2 {
 		return app.InvalidCommand("Invalid get request")
 	}
-	key := parsedCommands[1]
+	key := commands[1]
 	if app.Store[key] != "" {
 		fmt.Println(app.Store[key])
 	} else {
