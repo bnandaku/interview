@@ -39,7 +39,7 @@ func (app *App) NumEqualTo(parsedCommands []string) stateFn {
 		}
 	}
 	fmt.Println(count)
-	return app.InvalidCommand("not yet implemented")
+	return app.Prompt
 }
 
 func (app *App) All() stateFn {
