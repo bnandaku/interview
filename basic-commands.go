@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-//Set value based on provided commands
+//Set sets a value in the keystore for the provided key
 func (app *App) Set(commands []string) stateFn {
 	if len(commands) != 3 {
 		return app.InvalidCommand("invalid set request")
@@ -16,6 +16,7 @@ func (app *App) Set(commands []string) stateFn {
 	return app.Prompt
 }
 
+// UnSet  Deletes the key from the keystore
 func (app *App) UnSet(commands []string) stateFn {
 	if len(commands) != 2 {
 		return app.InvalidCommand("incorrect number of variables")
@@ -28,6 +29,7 @@ func (app *App) UnSet(commands []string) stateFn {
 	return app.Prompt
 }
 
+// NumEqualTo gets the numbers of values for the value for provided in command
 func (app *App) NumEqualTo(commands []string) stateFn {
 	if len(commands) != 2 {
 		return app.InvalidCommand("incorrect number of variables")
@@ -43,6 +45,7 @@ func (app *App) NumEqualTo(commands []string) stateFn {
 	return app.Prompt
 }
 
+// All  Prints all values in the keystore
 func (app *App) All() stateFn {
 	for key, value := range app.Store {
 		fmt.Println("key:", key, "|value:", value)
@@ -50,6 +53,7 @@ func (app *App) All() stateFn {
 	return app.Prompt
 }
 
+//Get gets the value from the keystore based on the provided key
 func (app *App) Get(commands []string) stateFn {
 	if len(commands) != 2 {
 		return app.InvalidCommand("Invalid get request")
@@ -63,6 +67,7 @@ func (app *App) Get(commands []string) stateFn {
 	return app.Prompt
 }
 
+//End exits the program
 func (app *App) End() stateFn {
 	return nil
 }
